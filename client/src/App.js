@@ -28,14 +28,14 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <ul className="list">
+    <div className="contacts-main-view">
+      <div className="list-item">
         {(contacts && contacts.length > 0) ? (
           contacts.map(contact => renderContact(contact))
         ) : (
           <p>You have no contacts</p>
         )}
-      </ul>
+      </div>
     </div>
   );
 }

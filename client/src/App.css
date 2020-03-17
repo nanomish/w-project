@@ -44,3 +44,8 @@
 .contact-phone {
     color: forestgreen;
 }
+
+.contacts-main-view {
+    width: 400px;
+    margin: auto;
+}
