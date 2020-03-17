@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import './App.css';
 import contactsService from './services/contacts';
 
 function App() {
@@ -19,11 +19,11 @@ function App() {
 
   const renderContact = contact => {
     return (
-      <li key={contact._id} className="list__item contact">
-        <span>{contact.isFavorite ? 'F' : '&nbsp;'}</span>
-        <h3 className="contact-name">{contact.name}</h3>
-        <p className="contact-phone">{contact.phone}</p>
-      </li>
+      <div key={contact._id} className="contact-list-item contact">
+        <div className="contact-favorite">{contact.isFavorite ? 'F' : ' '}</div>
+        <div className="contact-name">{contact.name}</div>
+        <div className="contact-phone">{contact.phone}</div>
+      </div>
     );
   };
 

@@ -39,13 +39,26 @@
 
 .contact-name {
     color: blue;
+    padding: .5em;
 }
 
 .contact-phone {
     color: forestgreen;
+    padding: .5em;
+}
+.contact-favorite {
+    color: forestgreen;
+    padding: .5em;
 }
 
 .contacts-main-view {
     width: 400px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-list-item {
+    display: flex;
+    flex-direction: row;
 }
