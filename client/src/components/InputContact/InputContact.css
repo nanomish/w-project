@@ -1,0 +1,15 @@
+.input-contact {
+    display: flex;
+    flex-direction: row;
+    margin: 1em 0 ;
+}
+
+.input-contact input{
+    border-radius: .3em;
+}
+
+.contact-i {
+    margin: 0 .5em;
+    width: 14em;
+}
+

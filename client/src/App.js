@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 import contactsService from './services/contacts';
+import InputContact from './components/InputContact/InputContact';
+import ContactElement from './components/Contact/ContactElement';
 
 function App() {
   const [contacts, setContacts] = useState(null);
@@ -17,23 +19,18 @@ function App() {
     setContacts(res);
   };
 
-  const renderContact = contact => {
-    return (
-      <div key={contact._id} className="contact-list-item contact">
-        <div className="contact-favorite">{contact.isFavorite ? 'F' : ' '}</div>
-        <div className="contact-name">{contact.name}</div>
-        <div className="contact-phone">{contact.phone}</div>
-      </div>
-    );
-  };
-
   return (
     <div className="contacts-main-view">
+      <InputContact getContacts={getContacts}/>
       <div className="list-item">
         {(contacts && contacts.length > 0) ? (
-          contacts.map(contact => renderContact(contact))
+          contacts.map(contact => {
+            return <ContactElement key={contact._id} getContacts={getContacts} contact={contact} />
+          })
         ) : (
-          <p>You have no contacts</p>
+          <div className="no-contacts">
+            <span className="no-contacts-msg">You have no contacts</span>
+          </div>
         )}
       </div>
     </div>

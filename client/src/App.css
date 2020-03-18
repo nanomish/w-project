@@ -40,19 +40,37 @@
 .contact-name {
     color: blue;
     padding: .5em;
+    width: 10em;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .contact-phone {
     color: forestgreen;
     padding: .5em;
+    width: 10em;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .contact-favorite {
-    color: forestgreen;
-    padding: .5em;
+    color: #8b6a10;
+    font-size: 1.5em;
+}
+
+.contact-favorite-set:before {
+    content: "\2605";
+}
+
+.contact-favorite-unset:before {
+    content: "\2606";
+}
+
+.contact-delete:before {
+    content: "\274c";
 }
 
 .contacts-main-view {
-    width: 400px;
+    width: 40em;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -61,4 +79,21 @@
 .contact-list-item {
     display: flex;
     flex-direction: row;
+}
+
+.no-contacts {
+    margin: auto;
+    width: fit-content;
+}
+
+.no-contacts-msg {
+    display: table-header-group;
+}
+
+.pointed {
+    cursor: pointer;
+}
+
+.pointed:disabled {
+    cursor: not-allowed;
 }
