@@ -18,15 +18,17 @@ export default class ContactElement extends React.Component {
   }
 
   async onFavoriteClick() {
-    let res = await this.toggleFavorite();
-    this.setState({isFavorite: res.isFavorite})
+    await this.toggleFavorite();
   }
 
   async toggleFavorite() {
     const {isFavorite} = this.state;
     const {contact} = this.props;
 
-    return await contactsService.update(contact._id, {isFavorite: !isFavorite});
+    let res = await contactsService.update(contact._id, {isFavorite: !isFavorite});
+    this.setState({isFavorite: res.isFavorite});
+
+    return res;
   }
 
   getFavoriteClassName(isFavorite) {
@@ -37,8 +39,8 @@ export default class ContactElement extends React.Component {
     return className;
   }
 
-  async deleteContact(contactId) {
-    await contactsService.delete(contactId);
+  async deleteContact() {
+    await contactsService.delete(this.props.contact._id);
     await this.props.getContacts();
   };
 
@@ -52,7 +54,7 @@ export default class ContactElement extends React.Component {
       </div>
       <div className="contact-name">{name}</div>
       <div className="contact-phone">{phone}</div>
-      <div className={"contact-delete pointed"} onClick={() => this.deleteContact(contact._id)}></div>
+      <div className={"contact-delete pointed"} onClick={this.deleteContact}></div>
     </div>)
   }
 }
