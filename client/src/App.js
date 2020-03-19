@@ -30,15 +30,25 @@ function App() {
   };
 
   const getFilteredContacts = () => {
-    var _search = search ? search.trim() : ''
-    return contacts
+    let filtered = contacts
       .filter(contact => {
-        return isOnlyFavorite && contact.isFavorite || !isOnlyFavorite;
+        if (isOnlyFavorite) {
+          return contact.isFavorite
+        } else {
+          return true;
+        }
       })
       .filter(contact => {
-        const searchRegexp = new RegExp(_search, 'i');
-        return (contact.name.match(searchRegexp) || contact.phone.match(searchRegexp))
+        const searchRegexp = new RegExp(search, 'i');
+        if (search) {
+          return (contact.name.match(searchRegexp) || contact.phone.match(searchRegexp))
+        } else {
+          return true;
+        }
       });
+
+    console.log('filtered: ', filtered);
+    return filtered;
   }
   const onPrev = () => {
     setCurrentPage(Math.max(currentPage - 1, 1));
@@ -75,7 +85,7 @@ function App() {
       <div className="list-item" style={{height: (2 * PAGE_SIZE) + 'em'}}>
         {(contacts && contacts.length > 0) ? (
           getFilteredContacts()
-            .slice(currentPage === 1 ? 1 : ((currentPage - 1) * PAGE_SIZE + 1), currentPage * PAGE_SIZE + 1)
+            .slice(currentPage === 1 ? 0 : ((currentPage - 1) * PAGE_SIZE), currentPage * PAGE_SIZE)
             .map(contact => {
               return <ContactElement key={contact._id} getContacts={getContacts} contact={contact} />
             })
