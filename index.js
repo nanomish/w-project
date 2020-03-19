@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 
 }
 
-const PORT = 9999;
+const PORT = 9997;
 app.listen(PORT, () => {
   console.log(`contacts app is running on port ${PORT}`)
 });
