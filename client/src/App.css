@@ -38,7 +38,7 @@
 }
 
 .contact-name {
-    color: blue;
+    color: #000;
     overflow: hidden;
     padding: .5em;
     text-overflow: ellipsis;
@@ -47,7 +47,7 @@
 }
 
 .contact-phone {
-    color: forestgreen;
+    color: #000;
     overflow: hidden;
     padding: .5em;
     text-overflow: ellipsis;
@@ -119,7 +119,7 @@
 .page-button {
     height: 2.5em;
     width: 5em;
-    background-color: #61dafb;
+    background-color: #b3bbbd;
     border-radius: 0.3em;
 }
 
