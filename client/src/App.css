@@ -70,7 +70,7 @@
 }
 
 .contacts-main-view {
-    width: 40em;
+    width: 26em;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -96,4 +96,27 @@
 
 .pointed:disabled {
     cursor: not-allowed;
+}
+
+.search-contacts {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search-contacts-i {
+    height: 2em;
+    border-radius: 0.3em;
+}
+
+.contacts-pagination {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.page-button {
+    height: 2.5em;
+    width: 5em;
+    background-color: #61dafb;
+    border-radius: 0.3em;
+    margin: 0 2em;
 }
