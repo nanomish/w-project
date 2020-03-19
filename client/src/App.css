@@ -39,18 +39,20 @@
 
 .contact-name {
     color: blue;
-    padding: .5em;
-    width: 10em;
-    text-overflow: ellipsis;
     overflow: hidden;
+    padding: .5em;
+    text-overflow: ellipsis;
+    width: 10em;
+    white-space: nowrap;
 }
 
 .contact-phone {
     color: forestgreen;
-    padding: .5em;
-    width: 10em;
-    text-overflow: ellipsis;
     overflow: hidden;
+    padding: .5em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 10em;
 }
 .contact-favorite {
     color: #8b6a10;
@@ -100,7 +102,7 @@
 
 .search-contacts {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .search-contacts-i {
@@ -111,6 +113,7 @@
 .contacts-pagination {
     display: flex;
     justify-content: flex-end;
+    margin: 1em 0;
 }
 
 .page-button {
@@ -118,5 +121,9 @@
     width: 5em;
     background-color: #61dafb;
     border-radius: 0.3em;
-    margin: 0 2em;
+}
+
+.page-num {
+    align-self: center;
+    margin: 0 1em;
 }

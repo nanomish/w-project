@@ -8,28 +8,55 @@ function App() {
   const [contacts, setContacts] = useState(null);
   const [search, setSearch] = useState(null);
   const [currentPage, setCurrentPage] = useState(null);
+  const [isOnlyFavorite, setIsOnlyFavorite] = useState(null);
 
-  const PAGE_SIZE = 5;
+  const PAGE_SIZE = 4;
 
   useEffect(() => {
     if(!contacts) {
       getContacts();
     }
-    setCurrentPage(1);
+    if (!currentPage) {
+      setCurrentPage(1);
+    }
+    if (isOnlyFavorite !== true && isOnlyFavorite !== false) {
+      setIsOnlyFavorite(false)
+    }
   });
 
   const getContacts = async () => {
     let res = await contactsService.getAll();
-    console.log(res);
     setContacts(res);
   };
 
+  const getFilteredContacts = () => {
+    var _search = search ? search.trim() : ''
+    return contacts
+      .filter(contact => {
+        return isOnlyFavorite && contact.isFavorite || !isOnlyFavorite;
+      })
+      .filter(contact => {
+        const searchRegexp = new RegExp(_search, 'i');
+        return (contact.name.match(searchRegexp) || contact.phone.match(searchRegexp))
+      });
+  }
   const onPrev = () => {
-
+    setCurrentPage(Math.max(currentPage - 1, 1));
   }
 
   const onNext = () => {
+    const _filteredContacts = getFilteredContacts();
+    const maxPageNum = Math.ceil(_filteredContacts.length / PAGE_SIZE)
+    setCurrentPage(Math.min(currentPage + 1, maxPageNum));
+  }
 
+  const onlyFavoritesChanged = () => {
+    setIsOnlyFavorite(!isOnlyFavorite);
+    setCurrentPage(1);
+  }
+  const searchFieldChanged = (e) => {
+    setSearch(e.target.value);
+    setCurrentPage(1);
   }
 
   return (
@@ -37,18 +64,18 @@ function App() {
       <InputContact getContacts={getContacts}/>
 
       <div className="search-contacts">
+        <div>
+          Only Favorite <input type="checkbox" onChange={onlyFavoritesChanged} />
+        </div>
         <input type="text" placeholder="search"
-               onChange={e => setSearch(e.target.value)}
+               onChange={searchFieldChanged}
                className="search-contacts-i"
         />
       </div>
-      <div className="list-item">
+      <div className="list-item" style={{height: (2 * PAGE_SIZE) + 'em'}}>
         {(contacts && contacts.length > 0) ? (
-          contacts
-            .filter(contact => {
-              const searchRegexp = new RegExp(search, 'i');
-              return search && (contact.name.match(searchRegexp) || contact.phone.match(searchRegexp)) || !search
-            })
+          getFilteredContacts()
+            .slice(currentPage === 1 ? 1 : ((currentPage - 1) * PAGE_SIZE + 1), currentPage * PAGE_SIZE + 1)
             .map(contact => {
               return <ContactElement key={contact._id} getContacts={getContacts} contact={contact} />
             })
@@ -63,13 +90,14 @@ function App() {
                className="pointed page-button"
                value="<<"
                onClick={() => onPrev()}/>
+        <div className="page-num">Page {currentPage}</div>
         <input type="submit"
                className="pointed page-button"
                value=">>"
                onClick={() => onNext()}/>
       </div>
     </div>
-  );
+);
 }
 
 export default App;

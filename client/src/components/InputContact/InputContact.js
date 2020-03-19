@@ -36,8 +36,8 @@ export default class InputContact extends React.Component {
   resetState() {
     this.setState({
       isFavorite: false,
-      name: null,
-      phone: null,
+      name: '',
+      phone: '',
     })
   }
 
@@ -45,7 +45,7 @@ export default class InputContact extends React.Component {
     const {isFavorite, name, phone} = this.state;
 
     return (<div className="input-contact">
-      <div onClick={e => this.setState({isFavorite: !isFavorite})}
+      <div onClick={() => this.setState({isFavorite: !isFavorite})}
            className={"contact-favorite pointed " + this.getFavoriteClassName()}>
 
       </div>

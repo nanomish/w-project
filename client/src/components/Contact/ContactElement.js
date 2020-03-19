@@ -26,17 +26,16 @@ export default class ContactElement extends React.Component {
     const {contact} = this.props;
 
     let res = await contactsService.update(contact._id, {isFavorite: !isFavorite});
-    this.setState({isFavorite: res.isFavorite});
+    this.setState({isFavorite: !isFavorite});
 
     return res;
   }
 
   getFavoriteClassName(isFavorite) {
 
-    let className = (isFavorite ? 'contact-favorite-set' : 'contact-favorite-unset')
-    console.log('className: ', className);
+    let _className = (isFavorite ? 'contact-favorite-set' : 'contact-favorite-unset')
 
-    return className;
+    return _className;
   }
 
   async deleteContact() {
@@ -49,7 +48,7 @@ export default class ContactElement extends React.Component {
     const {contact} = this.props;
 
     return ( <div key={contact._id} className="contact-list-item contact">
-      <div className={"contact-favorite pointed " + (this.getFavoriteClassName(isFavorite))}
+      <div className={"contact-favorite pointed " + this.getFavoriteClassName(isFavorite)}
            onClick={this.onFavoriteClick}>
       </div>
       <div className="contact-name">{name}</div>
