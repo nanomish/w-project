@@ -12,7 +12,7 @@ mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 mongoose.set("useNewUrlParser", true);
 
-const MONGODB_URI = 'mongodb://wintego:wintego1@ds219839.mlab.com:19839/wintegodb';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URI);
 
