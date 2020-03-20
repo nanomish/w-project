@@ -72,6 +72,7 @@
 }
 .contact-edit {
     font-size: 1.3em;
+    padding-right: .3em;
 }
 .contact-edit:before {
     content: "\270e";
