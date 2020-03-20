@@ -13,3 +13,12 @@
     width: 14em;
 }
 
+.edit-contact-component {
+    display: flex;
+    flex-direction: row;
+    margin: .35em 0;
+}
+
+.edit-contact-component input {
+    border-radius: .3em;
+}

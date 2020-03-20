@@ -70,6 +70,12 @@
 .contact-delete:before {
     content: "\274c";
 }
+.contact-edit {
+    font-size: 1.3em;
+}
+.contact-edit:before {
+    content: "\270e";
+}
 
 .contacts-main-view {
     width: 26em;
@@ -108,6 +114,7 @@
 .search-contacts-i {
     height: 2em;
     border-radius: 0.3em;
+    width: 19.3em;
 }
 
 .contacts-pagination {
