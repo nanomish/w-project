@@ -5,7 +5,7 @@ module.exports = function(app) {
   const PORT = process.env.PORT || 9997;
   app.use('/api',
     createProxyMiddleware({
-      target: `0.0.0.0:${PORT}`,
+      target: process.env.NODE_ENV === 'production' ? `0.0.0.0:${PORT}` : `http://localhost:${PORT}`,
       changeOrigin: true
     })
   );
